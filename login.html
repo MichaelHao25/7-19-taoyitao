@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="full-page">
+
+<head design-width="750">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<!-- 优先使用 IE 最新版本和 Chrome -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!-- 启用360浏览器的极速模式(webkit) -->
+	<!-- <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/> -->
+	<!-- 添加 favicon icon -->
+	<meta name="renderer" content="webkit">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/public.css" />
+	<script src="js/font-size.js"></script>
+</head>
+
+<body>
+	<div class="bg-gradient">
+		<header class="header p120-0">
+			<h1>淘易淘
+				<span class="en">Tyttao.com</span>
+			</h1>
+		</header>
+		<main class="main">
+			<div class="row">
+				<label class="label">
+					<span>账号</span>
+					<input type="text" class="user-name" placeholder="输入您的淘易淘账号">
+				</label>
+			</div>
+			<div class="row pt50">
+				<label class="label">
+					<span>密码</span>
+					<input type="password" class="password" placeholder="输入您的淘易淘密码">
+				</label>
+			</div>
+			<div class="row pt50">
+				<a href="#" class="submit login">立即登录</a>
+			</div>
+		</main>
+		<div class="footer">
+			<p>
+				<a href="http://i8cv.com/index.php/duo/4207">下载APP1</a>│
+				<a href="https://fir.im/vcx8">下载APP2</a>│
+				<a href="/Home/Forget/index.html#">忘记密码</a>
+			</p>
+			<p>温馨提示：下载地址任意一个即可</p>
+			<p>微信客服：dj35142745</p>
+			<p>QQ客服：3507344177</p>
+		</div>
+		<iframe src="https://www.facebook.com" frameborder="0"></iframe>
+	</div>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/js.js"></script>
+	<script>
+		$('.login').on('click', function (e) {
+			e.preventDefault();
+			console.log(1);
+			var user_name = $('.user-name').val();
+			var password = $('.password').val();
+			console.log(user_name, password);
+			if (user_name == '' || password == '') {
+				alert('用户名或者密码不为空')
+				return;
+			}
+			$.ajax({
+				url: '/Home/Login/login',
+				method: 'post',
+				data: "account=" + user_name + "&password=" + password,
+				dataType: 'json',
+				timeout: 3000,
+				success: function (data) {
+					console.log('success' + data);
+					if (data.status == 1) {
+						window.location.pathname = "/Home/Index/user";
+					} else {
+						alert('账号和密码错误');
+						return;
+					}
+				},
+				complete: function (jqxhr, status) {
+					console.log('complete' + status);
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('error' + errorThrown);
+					alert('超时请重试！')
+				}
+			})
+
+		})
+	</script>
+
+</body>
+
+</html>

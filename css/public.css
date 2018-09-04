@@ -1,0 +1,177 @@
+@import 'reset.css';
+/* 引入css文件的一种方式 */
+/*
+
+-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#99ffffff,endColorstr=#99ffffff)";
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff,endColorstr=#99ffffff);
+background:rgba(255,255,255,.8);
+
+
+ filter:alpha(opacity=40); 针对 IE8 以及更早的版本 */
+body {
+  font-size: 16Px;
+}
+.full-page,
+.full-page body {
+  width: 100%;
+  height: 100%;
+}
+.bg-gradient {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #276bbe 32%, #5ed5be 100%) left top/100% 100% no-repeat;
+}
+.header {
+  color: #fff;
+  text-align: center;
+  font-size: 0.7rem;
+}
+.header.p120-0 {
+  padding: 1.2rem 0;
+}
+.header .en {
+  vertical-align: sub;
+  font-size: 0.5rem;
+}
+.main .row {
+  padding-right: 0.7rem;
+  padding-left: 0.7rem;
+}
+.main .row.pt50 {
+  padding-top: 0.5rem;
+}
+.main .row .label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 0.8rem;
+  border: 0.04rem solid #fff;
+  border-radius: 0.4rem;
+  color: #fff;
+}
+.main .row span {
+  display: block;
+  flex: 0 0 1.5rem;
+  width: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.03rem;
+  font-weight: bold;
+  font-size: 0.44rem;
+}
+.main .row .w220 {
+  flex: 0 0 2.2rem;
+  width: 2.2rem;
+}
+.main .row input {
+  flex: 1 1 auto;
+  height: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.28rem;
+  height: 0.8rem;
+}
+.main .row input::-webkit-input-placeholder {
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'microsoft yahei';
+}
+.main .row input:-ms-input-placeholder {
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'microsoft yahei';
+}
+.main .row input::-ms-input-placeholder {
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'microsoft yahei';
+}
+.main .row input::placeholder {
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'microsoft yahei';
+}
+.main .row .sms-code {
+  flex: 1 1 calc(100% - 4em - 2.2rem);
+  width: calc(100% - 4em);
+}
+.main .row .send {
+  width: 3em;
+  color: #5ed5be;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: bold;
+  font-size: 0.27rem;
+}
+.main .row .submit {
+  display: block;
+  padding-left: 0.03rem;
+  height: 0.8rem;
+  border: 0.04rem solid #fff;
+  border-radius: 0.4rem;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.03rem;
+  font-size: 0.45rem;
+  line-height: 0.8rem;
+}
+.footer {
+  padding-top: 0.2rem;
+  color: #fff;
+  text-align: center;
+  font-size: 0.38rem;
+  line-height: 0.48rem;
+}
+.gift-container {
+  width: 100%;
+  height: 100%;
+  background: url("../img/e117ac9024a45bb5296b47c547bf914c-750+368.png") center top/100% auto no-repeat, #691b4f url("../img/1316903091f7d8a7448677e1a810177f-750+628.png") center bottom/100% auto no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gift-container .round {
+  position: relative;
+  overflow: hidden;
+}
+.gift-container .round img {
+  display: block;
+  width: 6.9rem;
+  transition: 3s -webkit-transform ease;
+  transition: 3s transform ease;
+  transition: 3s transform ease, 3s -webkit-transform ease;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+.gift-container .round .arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 1.8rem;
+  height: 1.8rem;
+  cursor: pointer;
+}
+.gift-container .round .arrow img {
+  position: absolute;
+  display: block;
+  width: 1.8rem;
+  bottom: 0;
+}
+.gift-container .btn {
+  position: absolute;
+  bottom: 1rem;
+  width: 4.3rem;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+.gift-container .btn img {
+  width: 100%;
+  display: block;
+}
+
+/*# sourceMappingURL=public.css.map */

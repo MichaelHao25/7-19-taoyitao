@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" class="full-page">
+
+<head design-width="750">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <!-- <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/> -->
+    <!-- 添加 favicon icon -->
+    <meta name="renderer" content="webkit">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/public.css" />
+    <!--  -->
+    <script src="js/font-size.js"></script>
+    <!--  -->
+</head>
+
+<body>
+    <div class="gift-container">
+
+        <div class="round">
+            <img src="img/014212a455abbb795d10416e6edc57de-690+690.png" alt="" class="target">
+            <div class="arrow btn-go">
+                <img src="img/12a308de67631a2b81508550880b39ed-180+247.png" alt="">
+            </div>
+        </div>
+
+        <a href="#" class="btn btn-go">
+            <img src="img/0f18872a04c7cd3c797423766d2c2e86-429+90.png" alt="">
+        </a>
+        <a href="#" class="add-7-24-hostory">抽奖记录</a>
+        <style>
+            .add-7-24-hostory{
+                position: absolute;
+                bottom: 0.3rem;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #000000;
+                text-decoration: underline;
+            }
+        </style>
+    </div>
+
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <!--  -->
+    <script src="js/js.js"></script>
+    <!--  -->
+    <script>
+        var c_gift = function () {}
+        c_gift.prototype.init = function() {
+            var that = this;
+            $('.gift-container .round .target').on('webkitTransitionEnd mozTransitionEnd oTransitionEnd transitionend',function(e) {
+                if(-2==parseInt(that.s_resuit)){
+                    alert('谢谢惠顾！')
+                    return;
+                }
+                alert('恭喜您中奖啦，奖品为:'+that.s_resuit);
+            })
+        }
+        c_gift.prototype.get_resuit = function () {
+            var that = this
+            $.ajax({
+                url: '/Home/Info/newlotterycl',
+                method: 'get',
+                data: "",
+                dataType: 'json',
+                timeout: 3000,
+                success: function (data) {
+                    console.log('success' + data);
+                    if (data.angle == -1) {
+                        alert(data.prize)
+                        document.location.reload()
+                        return;
+                    } else {
+                        that.s_resuit =data.prize
+
+                        that.animation(data.angle)
+                    }
+                },
+                complete: function (jqxhr, status) {
+                    console.log('complete' + status);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('error' + errorThrown);
+                    alert('超时请重试！')
+                }
+            })
+        }
+        c_gift.prototype.animation = function (angle) {
+            if (this.transform == undefined) {
+                var i_rand = this.rand(2, 5) * 360 + angle;
+            }else{
+                var mod = Math.ceil(this.transform/360)*360
+                var i_rand = this.rand(2, 5) * 360 + angle+mod;
+            }
+            $('.gift-container .round .target').css({
+                'transform': 'rotate(' + -i_rand + 'deg)',
+                '-webkit-transform': 'rotate(' + -i_rand + 'deg)',
+                '-moz-transform': 'rotate(' + -i_rand + 'deg)',
+                '-ms-transform': 'rotate(' + -i_rand + 'deg)'
+            });
+            
+            console.log(this.s_resuit);
+            
+            this.transform = i_rand;
+        }
+        c_gift.prototype.rand = function (max, min) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        var abc = new c_gift();
+        abc.init();
+        $('.btn-go').on('click', loop)
+
+
+        function loop() {
+            abc.get_resuit();
+            $('.btn-go').off();
+            setTimeout(function () {
+                $('.btn-go').on('click', loop)
+            }, 3000)
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
